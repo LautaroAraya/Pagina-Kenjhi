@@ -12,7 +12,8 @@
     <div style="background:#fff; border-radius:12px; padding:28px 24px; min-width:260px; box-shadow:0 4px 24px rgba(0,0,0,0.18); text-align:center; position:relative;">
     <div style="font-weight:bold; color:#d35400; font-size:1.3em; margin-bottom:12px;">KENJHI</div>
     <div style="color:#222; font-size:1.1em; margin-bottom:18px;">
-        UNA VEZ SELECCIONADO EL PEDIDO, METODO DE PAGO, Y SI ES ENVIO O RETIRO<br>
+        UNA VEZ SELECCIONADO EL PEDIDO, LA CANTIDAD, METODO DE PAGO, 
+        SI ES ENVIO O RETIRO Y EL NOMBRE DE QUIEN RECIBE<br>
         PRESIONE EL BOTON CON EL LOGO DE WHATSAPP PARA ENVIAR EL PEDIDO.
     </div>
     <button id="kenjhi-bienvenida-btn" style="background:#25d366; color:#fff; border:none; border-radius:8px; padding:8px 22px; font-size:1em; cursor:pointer;">Aceptar</button>
@@ -50,6 +51,7 @@
             </ul>
             <div class="nota">
                 📌 Todas las hamburguesas llevan papa fritas<br>
+                <br>
                 📌 Agregados:
                 <ul>
                     <li>Medallón extra</li>
@@ -101,7 +103,7 @@
                     <li>GRATINADO QUESO TYBO</li>
                     <li>GRATINADO QUESO CHEDDAR</li>
                 </ul>
-                EL PRECIO DE LOS AGREGADOS ES POR UNIDAD<br>
+                Los agregados tiene precio por unidad<br>
                 📌 Se pueden pedir tacos mixtos
             </div>
         </div>
@@ -153,10 +155,11 @@
                 <li>PORCION CHICA DE PAPAS</li>
                 <li>PORCIÓN MEDIANA DE PAPAS</li>
                 <li>PORCIÓN GRANDE DE PAPAS</li>
-                <li>CHEDDAR Y BACON</li>
+                <li>CHEDDAR</li>
+                <li>BACON</li>
             </ul>
             <div class="nota">
-                📌 Se le puede agregar queso cheddar
+                📌 El cheddar y el bacon tiene un precio adicional
             </div>
         </div>
         <!-- PIZZETAS -->
@@ -189,24 +192,27 @@
         </div>
     </div>
 
-    <!-- Opciones de pago -->
-    <div class="opciones-pago">
+<!-- Secciones de opciones en 3 columnas -->
+<div class="opciones-contenedor">
+    <!-- Forma de pago -->
+    <div class="opcion-col">
         <h3>Forma de pago</h3>
         <label>
             <input type="checkbox" class="pago-checkbox" value="Efectivo">
             Efectivo
-        </label>
+        </label><br>
         <label>
             <input type="checkbox" class="pago-checkbox" value="Transferencia">
             Transferencia
         </label>
     </div>
-    <div class="opciones-envio">
+    <!-- Cómo recibir -->
+    <div class="opcion-col">
         <h3>¿Cómo querés recibir tu pedido?</h3>
         <label>
             <input type="radio" name="envio" class="envio-radio" value="Lo paso a buscar por el local">
             Lo Paso a Buscar Por El Local
-        </label>
+        </label><br>
         <label>
             <input type="radio" name="envio" class="envio-radio" value="Para enviar">
             Para Enviar
@@ -215,6 +221,12 @@
             <input type="text" id="direccion-envio" placeholder="Ingresá tu dirección" style="padding:7px; width:90%; border-radius:6px; border:1px solid #ccc;">
         </div>
     </div>
+    <!-- Nombre -->
+    <div class="opcion-col">
+        <h3>Nombre para el pedido</h3>
+        <input type="text" id="nombre-pedido" placeholder="Tu nombre" style="padding:7px; width:90%; border-radius:6px; border:1px solid #ccc;">
+    </div>
+</div>
 
     <!-- Botón flotante de WhatsApp -->
     <a href="#" id="wsp-float" class="wsp-float" title="Escribinos por WhatsApp">
@@ -231,6 +243,18 @@
         </div>
     </div>
 
+    <!-- Acerca de Kenjhi -->
+<section class="acerca-de">
+    <h2>Acerca de Kenjhi</h2>
+    <p>
+        Somos una Roticeria de San Justo, Santa Fe, apasionada por la buena comida y la atención personalizada. 
+        En Kenjhi nos esforzamos cada día para ofrecerte productos frescos, sabrosos y con la mejor calidad. 
+        ¡Gracias por elegirnos y confiar en nuestro trabajo!
+    </p>
+    <p>
+        <strong>Horarios de atención:</strong> Miércoles a Domingo de 19:30 a 23:30 hs.
+    </p>
+</section>
     <footer>
         <p>Kenjhi Fast Food - Todos los derechos reservados © </p>
         <p>
