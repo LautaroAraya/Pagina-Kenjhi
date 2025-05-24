@@ -8,80 +8,62 @@
     <link rel="icon" href="imgs/logo.ico" type="image/x-icon">
 </head>
 <body>
-    <div id="kenjhi-bienvenida" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.35); z-index:99999; align-items:center; justify-content:center;">
-    <div style="background:#fff; border-radius:12px; padding:28px 24px; min-width:260px; box-shadow:0 4px 24px rgba(0,0,0,0.18); text-align:center; position:relative;">
-    <div style="font-weight:bold; color:#d35400; font-size:1.3em; margin-bottom:12px;">KENJHI</div>
-    <div style="color:#222; font-size:1.1em; margin-bottom:18px;">
-        UNA VEZ SELECCIONADO EL PEDIDO, LA CANTIDAD, METODO DE PAGO, 
-        SI ES ENVIO O RETIRO Y EL NOMBRE DE QUIEN RECIBE<br>
-        PRESIONE EL BOTON CON EL LOGO DE WHATSAPP PARA ENVIAR EL PEDIDO.
-    </div>
-    <button id="kenjhi-bienvenida-btn" style="background:#25d366; color:#fff; border:none; border-radius:8px; padding:8px 22px; font-size:1em; cursor:pointer;">Aceptar</button>
-    </div>
-</div>
-    <div class="logo-container">
-        <img src="imgs/logo.ico" alt="Logo Kenjhi">
-    </div>
-    <h1 id="texto1">Bienvenidos a Kenjhi...</h1>
-    <h2 id="texto2">Donde te ofrecemos las mejores comidas con la mejor calidad.</h2>
-    <h2 id="texto2">Aquí podrán ver nuestro menú y mandar directo a nuestro WhatsApp para pedir.</h2>
-    <h2>Precios pedir una vez enviado el pedido al WhatsApp</h2>
+    <!-- ...bienvenida y cabecera igual... -->
+
     <div class="menu-list">
         <!-- HAMBURGUESAS -->
         <div class="menu-section">
             <h2>🍔 Hamburguesas</h2>
             <ul>
-                <li>CLASICA</li>
-                <li>CRIOLLA</li>
-                <li>COMPLETA</li>
-                <li>MINI SUBLIME</li>
-                <li>CARAMELIZADA</li>
-                <li>RELLENA</li>
-                <li>SUBLIME</li>
+                <li data-precio="5500">CLASICA <span class="precio-item">$5.500</span></li>
+                <li data-precio="5800">CRIOLLA <span class="precio-item">$5.800</span></li>
+                <li data-precio="6000">COMPLETA <span class="precio-item">$6.000</span></li>
+                <li data-precio="7500">MINI SUBLIME <span class="precio-item">$7.500</span></li>
+                <li data-precio="7500">CARAMELIZADA <span class="precio-item">$7.500</span></li>
+                <li data-precio="7500">RELLENA <span class="precio-item">$7.500</span></li>
+                <li data-precio="10500">SUBLIME <span class="precio-item">$10.500</span></li>
             </ul>
             <h3>De Pollo Smash</h3>
             <ul>
-                <li>MC CHICKEN</li>
-                <li>CHICKEN LITTLE</li>
-                <li>SUPREMA</li>
+                <li data-precio="6500">MC CHICKEN <span class="precio-item">$6.500</span></li>
+                <li data-precio="6000">CHICKEN LITTLE <span class="precio-item">$6.000</span></li>
+                <li data-precio="7500">SUPREMA <span class="precio-item">$7.500</span></li>
             </ul>
             <h3>Hamburpizza</h3>
             <ul>
-                <li>MINI KENJHI COMPLETA</li>
-                <li>MINI KENJHI ESTILO SUBLIME</li>
+                <li data-precio="9000">MINI KENJHI COMPLETA <span class="precio-item">$9.000</span></li>
+                <li data-precio="9000">MINI KENJHI ESTILO SUBLIME <span class="precio-item">$9.000</span></li>
             </ul>
-            <div class="nota">
-                📌 Todas las hamburguesas llevan papa fritas<br>
-                <br>
-                📌 Agregados:
-                <ul>
-                    <li>Medallón extra</li>
-                    <li>Feta de queso cheddar</li>
-                </ul>
-            </div>
+<div class="nota">
+    📌 Todas las hamburguesas llevan papa fritas<br>
+    <ul style="margin: 8px 0 0 0; padding-left: 18px;">
+        <li data-precio="800">MEDALLÓN EXTRA <span class="precio-item">$800</span></li>
+        <li data-precio="700">FETA DE QUESO CHEDDAR <span class="precio-item">$700</span></li>
+    </ul>
+</div>
         </div>
         <!-- PIZZAS -->
         <div class="menu-section">
             <h2>🍕 Pizzas</h2>
             <ul>
-                <li>MUZARELLA</li>
-                <li>MARGHERITA</li>
-                <li>LA GRINCH</li>
-                <li>NAPOLITANA</li>
-                <li>FUGAZZETA</li>
-                <li>CALABRESA</li>
-                <li>JAMON Y MORRON</li>
-                <li>PALMITOS Y SALSA GOLF</li>
-                <li>LA GRINCH CON TOMATE CHERRY Y ACEITUNAS NEGRAS</li>
-                <li>ANCHOAS</li>
-                <li>HONGOS & BACÓN</li>
-                <li>PEPPERONI</li>
-                <li>JAMON CRUDO Y RUCULA</li>
-                <li>PIZZA HAWAIANA</li>
-                <li>4 QUESOS</li>
-                <li>CANDY ONION CHEESE</li>
-                <li>AMERICANA (OPCIONAL KETCHUP)</li>
-                <li>HAMBURPIZZA</li>
+                <li data-precio="6000">MUZARELLA <span class="precio-item">$6.000</span></li>
+                <li data-precio="7000">MARGHERITA <span class="precio-item">$7.000</span></li>
+                <li data-precio="7000">LA GRINCH <span class="precio-item">$7.000</span></li>
+                <li data-precio="7000">NAPOLITANA <span class="precio-item">$7.000</span></li>
+                <li data-precio="7000">FUGAZZETA <span class="precio-item">$7.000</span></li>
+                <li data-precio="7500">CALABRESA <span class="precio-item">$7.500</span></li>
+                <li data-precio="7500">JAMON Y MORRON <span class="precio-item">$7.500</span></li>
+                <li data-precio="8000">PALMITOS Y SALSA GOLF <span class="precio-item">$8.000</span></li>
+                <li data-precio="8000">LA GRINCH CON TOMATE CHERRY Y ACEITUNAS NEGRAS <span class="precio-item">$8.000</span></li>
+                <li data-precio="8500">ANCHOAS <span class="precio-item">$8.500</span></li>
+                <li data-precio="9000">HONGOS & BACÓN <span class="precio-item">$9.000</span></li>
+                <li data-precio="9000">PEPPERONI <span class="precio-item">$9.000</span></li>
+                <li data-precio="9000">JAMON CRUDO Y RUCULA <span class="precio-item">$9.000</span></li>
+                <li data-precio="9500">PIZZA HAWAIANA <span class="precio-item">$9.500</span></li>
+                <li data-precio="9500">4 QUESOS <span class="precio-item">$9.500</span></li>
+                <li data-precio="9500">CANDY ONION CHEESE <span class="precio-item">$9.500</span></li>
+                <li data-precio="10000">AMERICANA (OPCIONAL KETCHUP) <span class="precio-item">$10.000</span></li>
+                <li data-precio="15500">HAMBURPIZZA <span class="precio-item">$15.500</span></li>
             </ul>
             <div class="nota">
                 📌 Se pueden pedir pizza mixtas.
@@ -91,49 +73,48 @@
         <div class="menu-section">
             <h2>🌮 Tacos</h2>
             <ul>
-                <li>1 TACO DE POLLO O VACIO</li>
-                <li>2 TACOS DE POLLO O VACIO</li>
-                <li>GIGANTE DE TACOS DE POLLO O VACIO CON PAPAS</li>
+                <li data-precio="3500">1 TACO DE POLLO O VACIO <span class="precio-item">$3.500</span></li>
+                <li data-precio="6000">2 TACOS DE POLLO O VACIO <span class="precio-item">$6.000</span></li>
+                <li data-precio="16500">GIGANTE DE TACOS DE POLLO O VACIO CON PAPAS <span class="precio-item">$16.500</span></li>
             </ul>
             <div class="nota">
                 📌 Agregados:
                 <ul>
-                    <li>CEBOLLA CARAMELIZADA</li>
-                    <li>ZANAHORIA EN PICKLE</li>
-                    <li>TROCEADO DE JAMON</li>
-                    <li>GRATINADO QUESO TYBO</li>
-                    <li>GRATINADO QUESO CHEDDAR</li>
+                    <li data-precio="600">CEBOLLA CARAMELIZADA <span class="precio-item">$600</span></li>
+                    <li data-precio="600">ZANAHORIA EN PICKLE <span class="precio-item">$600</span></li>
+                    <li data-precio="1000">TROCEADO DE JAMON <span class="precio-item">$1.000</span></li>
+                    <li data-precio="1100">GRATINADO QUESO TYBO <span class="precio-item">$1.100</span></li>
+                    <li data-precio="1200">GRATINADO QUESO CHEDDAR <span class="precio-item">$1.200</span></li>
                 </ul>
-                Los agregados tiene precio por unidad<br>
+                Los agregados tienen precio por unidad<br>
                 📌 Se pueden pedir tacos mixtos
             </div>
         </div>
         <!-- BURRITOS -->
         <div class="menu-section">
-    <h2>🌯 Burritos</h2>
-    <ul>
-        CARNE O POLLO (ELECCIÓN)
-        <li>BURRITO COMPLETO (CON PAPAS)</li>
-        <li>BURRITO MEX (CON PAPAS)</li>
-        <li>2 BURRITOS SIN PAPAS (PROMO)</li>
-        <li>2 BURRITOS CON PAPAS (PROMO)</li>
-        <li>Burritos con relleno de vacio desmenuzado</li>
-    </ul>
-    <div class="nota">
-        📌 Se le puede agregar picante
-    </div>
-    </div>
+            <h2>🌯 Burritos</h2>
+            <ul>
+                <li data-precio="8000">BURRITO COMPLETO (CON PAPAS) <span class="precio-item">$8.000</span></li>
+                <li data-precio="8000">BURRITO MEX (CON PAPAS) <span class="precio-item">$8.000</span></li>
+                <li data-precio="13500">2 BURRITOS SIN PAPAS (PROMO) <span class="precio-item">$13.500</span></li>
+                <li data-precio="15000">2 BURRITOS CON PAPAS (PROMO) <span class="precio-item">$15.000</span></li>
+                <li data-precio="9000">BURRITOS CON RELLENO DE VACIO DESMENUZADO <span class="precio-item">$9.000</span></li>
+            </ul>
+            <div class="nota">
+                📌 Se le puede agregar picante
+            </div>
+        </div>
         <!-- MILANESAS -->
         <div class="menu-section">
             <h2>🥩 Milanesas de Carne</h2>
             <ul>
-                <li>MILANESA DE CARNE A LA NAPOLITANA CON PAPAS</li>
-                <li>MILANESA DE CARNE A LA NAPOLITANA SIN PAPAS</li>
-                <li>1 SANDWICH DE MILANESA DE CARNE A LA NAPOLITANA</li>
-                <li>1 SANDWICH DE MILANESA DE CARNE COMPLETO</li>
-                <li>2 SANDWICH DE MILANESA DE CARNE A LA NAPOLITANA</li>
-                <li>2 SANDWICH DE MILANESA DE CARNE COMPLETO</li>
-                <li>GIGANTE DE SANDWICH DE MILANESA DE CARNE COMPLETO</li>
+                <li data-precio="7000">MILANESA DE CARNE A LA NAPOLITANA CON PAPAS <span class="precio-item">$7.000</span></li>
+                <li data-precio="5000">MILANESA DE CARNE A LA NAPOLITANA SIN PAPAS <span class="precio-item">$5.000</span></li>
+                <li data-precio="7000">1 SANDWICH DE MILANESA DE CARNE A LA NAPOLITANA <span class="precio-item">$7.000</span></li>
+                <li data-precio="7000">1 SANDWICH DE MILANESA DE CARNE COMPLETO <span class="precio-item">$7.000</span></li>
+                <li data-precio="12500">2 SANDWICH DE MILANESA DE CARNE A LA NAPOLITANA <span class="precio-item">$12.500</span></li>
+                <li data-precio="12500">2 SANDWICH DE MILANESA DE CARNE COMPLETO <span class="precio-item">$12.500</span></li>
+                <li data-precio="19000">GIGANTE DE SANDWICH DE MILANESA DE CARNE COMPLETO <span class="precio-item">$19.000</span></li>
             </ul>
             <div class="nota">
                 📌 Todas las milanesas llevan papas fritas
@@ -143,31 +124,30 @@
         <div class="menu-section">
             <h2>🍗 Sandwich de Pollo o Vacío</h2>
             <ul>
-                <li>1 SANDWICH DE POLLO O VACIO</li>
-                <li>1 SANDWICH DE POLLO O VACIO CON PAPAS</li>
-                <li>2 SANDIWCH DE POLLO O VACIO</li>
-                <li>2 SANDIWCH DE POLLO O VACIO CON PAPAS</li>
+                <li data-precio="6500">1 SANDWICH DE POLLO O VACIO <span class="precio-item">$6.500</span></li>
+                <li data-precio="7500">1 SANDWICH DE POLLO O VACIO CON PAPAS <span class="precio-item">$7.500</span></li>
+                <li data-precio="11000">2 SANDIWCH DE POLLO O VACIO <span class="precio-item">$11.000</span></li>
+                <li data-precio="13500">2 SANDIWCH DE POLLO O VACIO CON PAPAS <span class="precio-item">$13.500</span></li>
             </ul>
         </div>
         <!-- PAPAS -->
         <div class="menu-section">
             <h2>🍟 Papas Fritas</h2>
             <ul>
-                <li>PORCION CHICA DE PAPAS</li>
-                <li>PORCIÓN MEDIANA DE PAPAS</li>
-                <li>PORCIÓN GRANDE DE PAPAS</li>
-                <li>CHEDDAR</li>
-                <li>BACON</li>
+                <li data-precio="3500">PORCION CHICA DE PAPAS <span class="precio-item">$3.500</span></li>
+                <li data-precio="5000">PORCIÓN MEDIANA DE PAPAS <span class="precio-item">$5.000</span></li>
+                <li data-precio="6500">PORCIÓN GRANDE DE PAPAS <span class="precio-item">$6.500</span></li>
+                <li data-precio="2500">CHEDDAR Y BACON <span class="precio-item">$2.500</span></li>
             </ul>
             <div class="nota">
-                📌 El cheddar y el bacon tiene un precio adicional
+                📌 Se le puede agregar queso cheddar
             </div>
         </div>
         <!-- PIZZETAS -->
         <div class="menu-section">
             <h2>🍕 Pizzetas</h2>
             <ul>
-                <li>2 PIZZETAS</li>
+                <li data-precio="4000">2 PIZZETAS <span class="precio-item">$4.000</span></li>
             </ul>
             <div class="nota">
                 <span>Pueden ser:</span>
@@ -179,19 +159,21 @@
                     <li>AMERICANA</li>
                     <li>FUGAZZETA</li>
                 </ul>
-                (Si son pizzetas americanas pasa a ser otro precio)
+                (Si son pizzetas americanas pasa a ser $5.000)
             </div>
         </div>
         <!-- PICADAS -->
         <div class="menu-section">
             <h2>🧀🥓 Picadas</h2>
             <ul>
-                <li>PICADA PARA 2 PERSONAS</li>
-                <li>PICADA PARA 2 PERSONAS CON PAPAS</li>
-                <li>PANES FARGO PARA PEBETES POR UNIDAD</li>
+                <li data-precio="9000">PICADA PARA 2 PERSONAS <span class="precio-item">$9.000</span></li>
+                <li data-precio="10000">PICADA PARA 2 PERSONAS CON PAPAS <span class="precio-item">$10.000</span></li>
+                <li data-precio="500">PANES FARGO PARA PEBETES POR UNIDAD <span class="precio-item">$500</span></li>
             </ul>
         </div>
     </div>
+
+<!-- ...resto del HTML igual... -->
 
 <!-- Secciones de opciones en 3 columnas -->
 <div class="opciones-contenedor">

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Agrega un checkbox y, si corresponde, un input de cantidad a cada item de menú y agregados
+    // Agrega checkbox y, si corresponde, input de cantidad a cada item de menú y agregados
     document.querySelectorAll('.menu-section ul li').forEach(function (li) {
         const texto = li.textContent.trim().toUpperCase();
         const checkbox = document.createElement('input');
@@ -37,6 +37,34 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Función para actualizar el total
+    function actualizarTotal() {
+        let total = 0;
+        document.querySelectorAll('.pedido-checkbox:checked').forEach(cb => {
+            const li = cb.parentElement;
+            const precio = parseFloat(li.getAttribute('data-precio')) || 0;
+            const cantidadInput = li.querySelector('.cantidad-input');
+            let cantidad = 1;
+            if (cantidadInput) cantidad = parseInt(cantidadInput.value) || 0;
+            total += precio * cantidad;
+        });
+        const totalDiv = document.getElementById('total-pedido');
+        if (totalDiv) totalDiv.innerText = 'Total: $' + total.toLocaleString();
+        return total;
+    }
+
+    // Actualizar total al cambiar cantidades o selección
+    document.addEventListener('input', function (e) {
+        if (e.target.classList.contains('cantidad-input') || e.target.classList.contains('pedido-checkbox')) {
+            actualizarTotal();
+        }
+    });
+    document.addEventListener('change', function (e) {
+        if (e.target.classList.contains('pedido-checkbox')) {
+            actualizarTotal();
+        }
+    });
+
     // Mostrar/ocultar campo dirección según opción de envío
     const radiosEnvio = document.querySelectorAll('.envio-radio');
     const direccionContainer = document.getElementById('direccion-container');
@@ -64,20 +92,24 @@ document.addEventListener('DOMContentLoaded', function () {
     wspBtn.addEventListener('click', function (e) {
         e.preventDefault();
 
-        // Artículos seleccionados con cantidad (si tiene input de cantidad)
+        // Artículos seleccionados con cantidad y precio
         const seleccionados = Array.from(document.querySelectorAll('.pedido-checkbox:checked'))
             .map(cb => {
-                const cantidadInput = cb.parentElement.querySelector('.cantidad-input');
-                if (cantidadInput) {
-                    const cantidad = cantidadInput.value;
-                    return { texto: cb.value, cantidad: cantidad };
-                } else {
-                    return { texto: cb.value, cantidad: 1 }; // Para los que no tienen input, se asume 1
-                }
+                const li = cb.parentElement;
+                const precio = parseFloat(li.getAttribute('data-precio')) || 0;
+                const cantidadInput = li.querySelector('.cantidad-input');
+                let cantidad = 1;
+                if (cantidadInput) cantidad = parseInt(cantidadInput.value) || 0;
+                return {
+                    texto: cb.value,
+                    cantidad: cantidad,
+                    precio: precio,
+                    subtotal: precio * cantidad
+                };
             });
 
         // Validar que todos los seleccionados tengan cantidad mayor a 0
-        const algunoSinCantidad = seleccionados.some(item => parseInt(item.cantidad) < 1 || isNaN(parseInt(item.cantidad)));
+        const algunoSinCantidad = seleccionados.some(item => item.cantidad < 1 || isNaN(item.cantidad));
         if (algunoSinCantidad) {
             alert('Ingresá la cantidad para cada producto seleccionado (debe ser al menos 1).');
             return;
@@ -116,8 +148,13 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        // Calcular total
+        const total = seleccionados.reduce((acc, item) => acc + item.subtotal, 0);
+
         // Armar mensaje
-        const seleccionadosTexto = seleccionados.map(item => `- ${item.texto}${item.cantidad ? ' x' + item.cantidad : ''}`).join('\n');
+        const seleccionadosTexto = seleccionados.map(item =>
+            `- ${item.texto} x${item.cantidad} ($${item.precio.toLocaleString()} c/u) = $${item.subtotal.toLocaleString()}`
+        ).join('\n');
         mensajeFinal = `Quisiera pedir esto:\n${seleccionadosTexto}`;
         mensajeFinal += `\n\nForma de pago: ${pagos.join(', ')}`;
         mensajeFinal += `\n\nEntrega: ${envio.value}`;
@@ -125,6 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
             mensajeFinal += `\nDirección: ${direccion}`;
         }
         mensajeFinal += `\n\nNombre: ${nombrePedido}`;
+        mensajeFinal += `\n\nTOTAL: $${total.toLocaleString()}`;
 
         // Mostrar previsualización
         previewContent.innerText = mensajeFinal;
