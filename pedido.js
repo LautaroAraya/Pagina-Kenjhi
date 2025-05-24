@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const cantidad = document.createElement('input');
             cantidad.type = 'number';
             cantidad.className = 'cantidad-input';
-            cantidad.min = 1;
-            cantidad.value = 1;
+            cantidad.min = 0;
+            cantidad.value = 0;
             cantidad.style.width = '45px';
             cantidad.style.marginLeft = '8px';
             cantidad.style.borderRadius = '5px';
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Validación de cantidad mínima
     document.querySelectorAll('.cantidad-input').forEach(input => {
         input.addEventListener('input', function () {
-            if (parseInt(this.value) < 1 || isNaN(this.value)) this.value = 1;
+            if (parseInt(this.value) < 0 || isNaN(this.value)) this.value = 0;
         });
     });
 
