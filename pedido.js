@@ -70,11 +70,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 const cantidadInput = cb.parentElement.querySelector('.cantidad-input');
                 if (cantidadInput) {
                     const cantidad = cantidadInput.value;
-                    return `- ${cb.value} x${cantidad}`;
+                    return { texto: cb.value, cantidad: cantidad };
                 } else {
-                    return `- ${cb.value}`;
+                    return { texto: cb.value, cantidad: 1 }; // Para los que no tienen input, se asume 1
                 }
             });
+
+        // Validar que todos los seleccionados tengan cantidad mayor a 0
+        const algunoSinCantidad = seleccionados.some(item => parseInt(item.cantidad) < 1 || isNaN(parseInt(item.cantidad)));
+        if (algunoSinCantidad) {
+            alert('Ingresá la cantidad para cada producto seleccionado (debe ser al menos 1).');
+            return;
+        }
 
         // Método de pago seleccionado
         const pagos = Array.from(document.querySelectorAll('.pago-checkbox:checked'))
@@ -110,7 +117,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Armar mensaje
-        mensajeFinal = `Quisiera pedir esto:\n${seleccionados.join('\n')}`;
+        const seleccionadosTexto = seleccionados.map(item => `- ${item.texto}${item.cantidad ? ' x' + item.cantidad : ''}`).join('\n');
+        mensajeFinal = `Quisiera pedir esto:\n${seleccionadosTexto}`;
         mensajeFinal += `\n\nForma de pago: ${pagos.join(', ')}`;
         mensajeFinal += `\n\nEntrega: ${envio.value}`;
         if (envio.value === 'Para enviar') {
