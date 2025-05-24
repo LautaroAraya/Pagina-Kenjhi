@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // No agregar contador a CHEDDAR, BACON y 2 PIZZETAS
         if (
-            texto !== 'CHEDDAR' &&
-            texto !== 'BACON' &&
-            texto !== '2 PIZZETAS'
+            !texto.includes('CHEDDAR.') &&
+            !texto.includes('BACON.') &&
+            !texto.includes('2 PIZZETAS.')
         ) {
             const cantidad = document.createElement('input');
             cantidad.type = 'number';
