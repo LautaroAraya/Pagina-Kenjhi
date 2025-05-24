@@ -97,3 +97,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+window.addEventListener('DOMContentLoaded', function () {
+    const bienvenida = document.getElementById('kenjhi-bienvenida');
+    const bienvenidaBtn = document.getElementById('kenjhi-bienvenida-btn');
+    if (bienvenida && bienvenidaBtn) {
+        bienvenida.style.display = 'flex';
+        bienvenidaBtn.onclick = function() {
+            bienvenida.style.display = 'none';
+        };
+    }
+});

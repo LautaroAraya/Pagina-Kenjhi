@@ -108,16 +108,7 @@ h1, h2 {
     align-items: center;
     justify-content: center;
     transition: box-shadow 0.2s, background 0.2s;
-    animation: pulse-wsp 1.5s infinite alternate;
-}
-@keyframes pulse-wsp {
-    0% { box-shadow: 0 2px 8px rgba(37,211,102,0.3); }
-    100% { box-shadow: 0 0 24px 8px #25d36655; }
-}
-.wsp-float:hover {
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-    background: #1ebe57;
-    animation: bounce-wsp 0.5s;
+    animation: bounce-wsp 1.2s infinite;
 }
 @keyframes bounce-wsp {
     0%   { transform: scale(1); }
@@ -131,6 +122,11 @@ h1, h2 {
     height: 32px;
     margin: 0;
     display: block;
+}
+/* Elimina cualquier animación en :hover */
+.wsp-float:hover {
+    background: #1ebe57;
+    /* No animation aquí */
 }
 /* --- Footer --- */
 footer {
