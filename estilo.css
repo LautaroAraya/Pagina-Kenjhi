@@ -1,0 +1,222 @@
+h1 {
+    color: white;
+}
+h2 {
+    color: white;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+}
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(#20c7ff, #ef8b9c);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.logo-container img {
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 0px 0px rgba(0,0,0,0.1);
+}
+h1, h2 {
+    text-align: center;
+    color: #222;
+}
+.menu-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+/* Fondo blanco y sombra para profundidad en cada sección */
+.menu-section {
+    background: #f5cfcf;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 6px rgba(0,0,0,0.07);
+    padding: 28px 22px 18px 22px;
+    margin: 28px 0 32px 0;
+    transition: box-shadow 0.2s;
+}
+.menu-section:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.16), 0 2px 8px rgba(0,0,0,0.10);
+}
+.menu-section h2, .menu-section h3 {
+    margin-top: 0;
+    color: #d35400;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+.menu-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.menu-section li {
+    margin-bottom: 8px;
+    font-size: 1em;
+    color: #111;
+    font-weight: 500;
+}
+.menu-section .nota {
+    font-size: 0.95em;
+    color: #555;
+    margin-top: 10px;
+}
+.menu-section .nota ul li {
+    color: #111;
+    font-weight: 500;
+}
+@media (max-width: 900px) {
+    .menu-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 600px) {
+    .menu-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Botón flotante de WhatsApp con animación */
+.wsp-float {
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    bottom: 25px;
+    right: 25px;
+    z-index: 100;
+    background: #25d366;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.2s, background 0.2s;
+    animation: pulse-wsp 1.5s infinite alternate;
+}
+@keyframes pulse-wsp {
+    0% { box-shadow: 0 2px 8px rgba(37,211,102,0.3); }
+    100% { box-shadow: 0 0 24px 8px #25d36655; }
+}
+.wsp-float:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    background: #1ebe57;
+    animation: bounce-wsp 0.5s;
+}
+@keyframes bounce-wsp {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.18, 0.85); }
+    50%  { transform: scale(0.92, 1.08); }
+    70%  { transform: scale(1.05, 0.95); }
+    100% { transform: scale(1); }
+}
+.wsp-float .whatsapp-icon {
+    width: 32px;
+    height: 32px;
+    margin: 0;
+    display: block;
+}
+/* --- Footer --- */
+footer {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 18px 10px 10px 10px;
+    font-size: 1em;
+    margin-top: 40px;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+    letter-spacing: 0.5px;
+}
+footer p {
+    margin: 6px 0;
+}
+/* Estilo para la sección de forma de pago */
+.opciones-pago {
+    background: #f5cfcf;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    max-width: 400px;
+    margin: 40px auto 20px auto;
+    padding: 18px 24px 12px 24px;
+    text-align: center;
+}
+.opciones-pago h3 {
+    margin-top: 0;
+    color: #d35400;
+    font-size: 1.2em;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+}
+.opciones-pago label {
+    display: inline-block;
+    margin: 0 18px 10px 18px;
+    font-size: 1.1em;
+    color: #222;
+    cursor: pointer;
+}
+.opciones-pago input[type="checkbox"] {
+    accent-color: #25d366;
+    margin-right: 7px;
+    transform: scale(1.2);
+    vertical-align: middle;
+}
+/* Estilo para la sección de envío */
+.opciones-envio {
+    background: #f5cfcf;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    max-width: 400px;
+    margin: 30px auto 20px auto;
+    padding: 18px 24px 12px 24px;
+    text-align: center;
+}
+.opciones-envio h3 {
+    margin-top: 0;
+    color: #d35400;
+    font-size: 1.2em;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+}
+.opciones-envio label {
+    display: inline-block;
+    margin: 0 18px 10px 18px;
+    font-size: 1.1em;
+    color: #222;
+    cursor: pointer;
+}
+.opciones-envio input[type="radio"] {
+    accent-color: #25d366;
+    margin-right: 7px;
+    transform: scale(1.2);
+    vertical-align: middle;
+}
+#direccion-envio {
+    margin-top: 8px;
+}
+
+/* Animación al seleccionar productos */
+.pedido-checkbox:checked,
+.pago-checkbox:checked,
+.envio-radio:checked {
+    animation: pulse 0.3s;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 4px #25d36633; }
+    100% { box-shadow: none; }
+}
