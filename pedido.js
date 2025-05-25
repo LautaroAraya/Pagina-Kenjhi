@@ -150,7 +150,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('nombre-pedido').focus();
             return;
         }
-        // ...
         if (horarioPedido) {
         mensajeFinal += `\nHorario: ${horarioPedido}`;
         }
@@ -169,6 +168,10 @@ document.addEventListener('DOMContentLoaded', function () {
             mensajeFinal += `\nDirección: ${direccion}`;
         }
         mensajeFinal += `\n\nNombre: ${nombrePedido}`;
+        //agregar el horario del pedido
+        if (horarioPedido) {
+            mensajeFinal += `\n\nHorario: ${horarioPedido}`;
+        }
         mensajeFinal += `\n\nTOTAL: $${total.toLocaleString()}`;
 
         // Mostrar previsualización
