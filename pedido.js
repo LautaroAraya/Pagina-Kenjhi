@@ -124,6 +124,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const direccion = document.getElementById('direccion-envio') ? document.getElementById('direccion-envio').value.trim() : '';
         const nombrePedido = document.getElementById('nombre-pedido') ? document.getElementById('nombre-pedido').value.trim() : '';
 
+        const horarioPedido = document.getElementById('horario-pedido') ? document.getElementById('horario-pedido').value.trim() : '';
+
+
         // Validaciones
         if (seleccionados.length === 0) {
             alert('Seleccioná al menos un producto para pedir por WhatsApp.');
@@ -146,6 +149,10 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Ingresá el nombre de quien recibe el pedido.');
             document.getElementById('nombre-pedido').focus();
             return;
+        }
+        // ...
+        if (horarioPedido) {
+        mensajeFinal += `\nHorario: ${horarioPedido}`;
         }
 
         // Calcular total
