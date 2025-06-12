@@ -47,6 +47,11 @@
         <li data-precio="700"> FETA DE QUESO CHEDDAR <span class="precio-item">$700</span></li>
     </ul>
 </div>
+            <!--
+            <button class="ver-mas-btn" style="margin: 12px auto 0 auto; display: block; background: #d35400; color: #fff; border: none; border-radius: 8px; padding: 8px 22px; font-size: 1em; cursor: pointer;">
+    Ver más
+</button>
+            -->
         </div>
         <!-- PIZZAS -->
         <div class="menu-section">
@@ -74,6 +79,11 @@
             <div class="nota">
                 📌 Se pueden pedir pizza mixtas.
             </div>
+            <!--
+            <button class="ver-mas-btn" style="margin: 12px auto 0 auto; display: block; background: #d35400; color: #fff; border: none; border-radius: 8px; padding: 8px 22px; font-size: 1em; cursor: pointer;">
+    Ver más
+</button>
+            -->
         </div>
         <!-- TACOS -->
         <div class="menu-section">
@@ -95,6 +105,11 @@
                 Los agregados tienen precio por unidad<br>
                 📌 Se pueden pedir tacos mixtos
             </div>
+            <!--
+            <button class="ver-mas-btn" style="margin: 12px auto 0 auto; display: block; background: #d35400; color: #fff; border: none; border-radius: 8px; padding: 8px 22px; font-size: 1em; cursor: pointer;">
+    Ver más
+</button>
+            -->
         </div>
         <!-- BURRITOS -->
         <div class="menu-section">
@@ -109,6 +124,11 @@
             <div class="nota">
                 📌 Se le puede agregar picante
             </div>
+            <!--
+            <button class="ver-mas-btn" style="margin: 12px auto 0 auto; display: block; background: #d35400; color: #fff; border: none; border-radius: 8px; padding: 8px 22px; font-size: 1em; cursor: pointer;">
+    Ver más
+</button>
+            -->
         </div>
         <!-- MILANESAS -->
         <div class="menu-section">
@@ -125,6 +145,11 @@
             <div class="nota">
                 📌 Todas las milanesas llevan papas fritas
             </div>
+            <!--
+            <button class="ver-mas-btn" style="margin: 12px auto 0 auto; display: block; background: #d35400; color: #fff; border: none; border-radius: 8px; padding: 8px 22px; font-size: 1em; cursor: pointer;">
+    Ver más
+</button>
+            -->
         </div>
         <!-- SANDWICHES -->
         <div class="menu-section">
@@ -135,6 +160,11 @@
                 <li data-precio="11000"> 2 SANDIWCH DE POLLO O VACIO <span class="precio-item">$11.000</span></li>
                 <li data-precio="13500"> 2 SANDIWCH DE POLLO O VACIO CON PAPAS <span class="precio-item">$13.500</span></li>
             </ul>
+            <!--
+            <button class="ver-mas-btn" style="margin: 12px auto 0 auto; display: block; background: #d35400; color: #fff; border: none; border-radius: 8px; padding: 8px 22px; font-size: 1em; cursor: pointer;">
+    Ver más
+</button>
+            -->
         </div>
         <!-- PAPAS -->
         <div class="menu-section">
@@ -147,7 +177,7 @@
                 <li > BACON. <span class="precio-item"></span></li>
             </ul>
             <div class="nota">
-                📌 Se le puede agregar queso cheddar
+                📌 Se le puede agregar queso cheddar y bacon
             </div>
         </div>
         <!-- PIZZETAS -->
@@ -166,18 +196,15 @@
                     <li> AMERICANA</li>
                     <li> FUGAZZETA</li>
                 </ul>
-                (Si son pizzetas americanas pasa a ser $5.000)
+                (Si son pizzetas americanas pasa a ser $5.000 se le dara el precio actualizado por WhatsApp)
             </div>
+            <!--
+            <button class="ver-mas-btn" style="margin: 12px auto 0 auto; display: block; background: #d35400; color: #fff; border: none; border-radius: 8px; padding: 8px 22px; font-size: 1em; cursor: pointer;">
+    Ver más
+    </button>
+        -->
         </div>
-        <!-- PICADAS -->
-        <div class="menu-section">
-            <h2>🧀🥓 Picadas</h2>
-            <ul>
-                <li data-precio="9000"> PICADA PARA 2 PERSONAS <span class="precio-item">$9.000</span></li>
-                <li data-precio="10000"> PICADA PARA 2 PERSONAS CON PAPAS <span class="precio-item">$10.000</span></li>
-                <li data-precio="500"> PANES FARGO PARA PEBETES POR UNIDAD <span class="precio-item">$500</span></li>
-            </ul>
-        </div>
+
     </div>
 
 <!-- Secciones de opciones en 3 columnas -->
@@ -214,7 +241,7 @@
     <h3>Nombre para el pedido</h3>
     <input type="text" id="nombre-pedido" placeholder="Tu nombre" style="padding:7px; width:90%; border-radius:6px; border:1px solid #ccc; margin-bottom:10px;">
     <label for="horario-pedido" style="margin-top:8px;">Horario de retiro/envío</label>
-    <input type="time" id="horario-pedido" style="padding:7px; width:90%; border-radius:6px; border:1px solid #ccc;">
+<input type="time" id="horario-pedido" min="19:30" max="00:00" style="padding:7px; width:90%; border-radius:6px; border:1px solid #ccc;">
 </div>
 </div>
 
