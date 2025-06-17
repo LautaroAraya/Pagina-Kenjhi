@@ -272,3 +272,21 @@ footer a:hover {
     font-size: 1.1em;
     margin-bottom: 12px;
 }
+#horario-pedido {
+    padding: 8px 12px;
+    border: 1.5px solid #d35400;
+    border-radius: 8px;
+    background: #fff8f3;
+    font-size: 1.1em;
+    color: #060606;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    width: 90%;
+    box-sizing: border-box;
+}
+#horario-pedido:focus {
+    border-color: #ff8800;
+    box-shadow: 0 0 0 2px #ffd9b3;
+}

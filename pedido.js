@@ -150,8 +150,10 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('nombre-pedido').focus();
             return;
         }
-        if (horarioPedido) {
-        mensajeFinal += `\nHorario: ${horarioPedido}`;
+        if (horarioPedido === '') {
+            alert('Ingresá el horario de retiro/envío.');
+            document.getElementById('horario-pedido').focus();
+            return;
         }
 
         // Calcular total
