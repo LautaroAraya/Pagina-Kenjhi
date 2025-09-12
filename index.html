@@ -43,7 +43,7 @@
 <div class="nota">
     📌 Todas las hamburguesas llevan papa fritas<br>
     <ul style="margin: 8px 0 0 0; padding-left: 18px;">
-        <li data-precio="800"> MEDALLÓN EXTRA <span class="precio-item">$800</span></li>
+        <li data-precio="1000"> MEDALLÓN EXTRA <span class="precio-item">$1000</span></li>
         <li data-precio="1600"> MEDALLON RELLENO EXTRA <span class="precio-item">$1600</span></li>
         <li data-precio="700"> FETA DE QUESO CHEDDAR <span class="precio-item">$700</span></li>
     </ul>
@@ -257,6 +257,13 @@
             <div id="preview-content" style="color:#222; font-size:1em; margin-bottom:18px;"></div>
             <button id="btn-enviar-wsp" style="background:#25d366; color:#fff; border:none; border-radius:8px; padding:10px 22px; font-size:1em; cursor:pointer; margin-right:10px;">Enviar por WhatsApp</button>
             <button id="btn-cerrar-preview" style="background:#eee; color:#222; border:none; border-radius:8px; padding:10px 18px; font-size:1em; cursor:pointer;">Cancelar</button>
+            <div id="imagen-pedido-container" style="display:none; text-align:center; margin-top:18px;">
+    <img id="imagen-pedido" style="max-width:100%; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.10); margin-bottom:10px;">
+    <br>
+    <button id="btn-descargar-imagen" style="background:#d35400; color:#fff; border:none; border-radius:8px; padding:8px 22px; font-size:1em; cursor:pointer;">
+        Descargar imagen del pedido
+    </button>
+</div>
         </div>
     </div>
 
@@ -295,6 +302,7 @@
                 width="100%" height="180" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="pedido.js"></script>
 </body>
 </html>
