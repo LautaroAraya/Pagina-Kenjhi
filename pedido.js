@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         checkbox.style.marginRight = '8px';
 
         // Detectar aderezos de pollo kentucky
-        const esAderezoQuesadilla = (
+        const esAderezoDePollo = (
             texto.includes('MAYONESA COMUN') ||
             texto.includes('MAYONESA DE AJO') ||
             texto.includes('KETCHUP COMUN') ||
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
             !texto.includes('CHEDDAR.') &&
             !texto.includes('BACON.') &&
             !texto.includes('2 PIZZETAS.') &&
-            !esAderezoQuesadilla
+            !esAderezoDePollo
         ) {
             const cantidad = document.createElement('input');
             cantidad.type = 'number';
@@ -113,18 +113,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     cantidad: cantidad,
                     precio: precio,
                     subtotal: precio * cantidad,
-                    esAderezoQuesadilla: (
+                    esAderezoPollo: (
                         cb.value.toUpperCase().includes('MAYONESA COMUN') ||
                         cb.value.toUpperCase().includes('MAYONESA DE AJO') ||
-                        cb.value.toUpperCase().includes('GRATINADO QUESO TYBO') ||
-                        cb.value.toUpperCase().includes('GRATINADO QUESO CHEDDAR')
+                        cb.value.toUpperCase().includes('KETCHUP COMUN') ||
+                        cb.value.toUpperCase().includes('KETCHUP PICANTE')
                     )
                 };
             });
 
-        // Separar aderezos de quesadilla
-        const aderezosQuesadilla = seleccionados.filter(item => item.esAderezoQuesadilla);
-        const productosSeleccionados = seleccionados.filter(item => !item.esAderezoQuesadilla);
+        // Separar aderezos de pollo kentucky
+        const aderezosPollo = seleccionados.filter(item => item.esAderezoPollo);
+        const productosSeleccionados = seleccionados.filter(item => !item.esAderezoPollo);
 
         // Validar que todos los productos seleccionados tengan cantidad mayor a 0
         const algunoSinCantidad = productosSeleccionados.some(item => item.cantidad < 1 || isNaN(item.cantidad));
@@ -184,8 +184,8 @@ document.addEventListener('DOMContentLoaded', function () {
             `- ${item.texto} x${item.cantidad} ($${item.precio.toLocaleString()} c/u) = $${item.subtotal.toLocaleString()}`
         ).join('\n');
         mensajeFinal = `Quisiera pedir esto:\n${productosTexto}`;
-        if (aderezosQuesadilla.length > 0) {
-            mensajeFinal += `\n\nAderezos para Quesadilla: ` + aderezosQuesadilla.map(a => a.texto).join(', ');
+        if (aderezosPollo.length > 0) {
+            mensajeFinal += `\n\nAderezos para Pollo Kentucky: ` + aderezosPollo.map(a => a.texto).join(', ');
         }
         mensajeFinal += `\n\nForma de pago: ${pagos.join(', ')}`;
         mensajeFinal += `\n\nEntrega: ${envio.value}`;
