@@ -8,11 +8,19 @@ document.addEventListener('DOMContentLoaded', function () {
         checkbox.value = li.textContent.trim();
         checkbox.style.marginRight = '8px';
 
-        // No agregar contador a CHEDDAR, BACON y 2 PIZZETAS
+        // Detectar aderezos de quesadilla
+        const esAderezoQuesadilla = (
+            texto.includes('MAYONESA COMUN') ||
+            texto.includes('MAYONESA DE AJO') ||
+            texto.includes('KETCHUP COMUN') ||
+            texto.includes('KETCHUP PICANTE')
+        );
+        // No agregar contador a CHEDDAR, BACON, 2 PIZZETAS y aderezos de quesadilla
         if (
             !texto.includes('CHEDDAR.') &&
             !texto.includes('BACON.') &&
-            !texto.includes('2 PIZZETAS.')
+            !texto.includes('2 PIZZETAS.') &&
+            !esAderezoQuesadilla
         ) {
             const cantidad = document.createElement('input');
             cantidad.type = 'number';
@@ -104,16 +112,28 @@ document.addEventListener('DOMContentLoaded', function () {
                     texto: cb.value,
                     cantidad: cantidad,
                     precio: precio,
-                    subtotal: precio * cantidad
+                    subtotal: precio * cantidad,
+                    esAderezoQuesadilla: (
+                        cb.value.toUpperCase().includes('MAYONESA COMUN') ||
+                        cb.value.toUpperCase().includes('MAYONESA DE AJO') ||
+                        cb.value.toUpperCase().includes('GRATINADO QUESO TYBO') ||
+                        cb.value.toUpperCase().includes('GRATINADO QUESO CHEDDAR')
+                    )
                 };
             });
 
-        // Validar que todos los seleccionados tengan cantidad mayor a 0
-        const algunoSinCantidad = seleccionados.some(item => item.cantidad < 1 || isNaN(item.cantidad));
+        // Separar aderezos de quesadilla
+        const aderezosQuesadilla = seleccionados.filter(item => item.esAderezoQuesadilla);
+        const productosSeleccionados = seleccionados.filter(item => !item.esAderezoQuesadilla);
+
+        // Validar que todos los productos seleccionados tengan cantidad mayor a 0
+        const algunoSinCantidad = productosSeleccionados.some(item => item.cantidad < 1 || isNaN(item.cantidad));
         if (algunoSinCantidad) {
             alert('Ingresá la cantidad para cada producto seleccionado (debe ser al menos 1).');
             return;
         }
+
+        // ...la validación ya se realiza con productosSeleccionados más arriba...
 
         // Método de pago seleccionado
         const pagos = Array.from(document.querySelectorAll('.pago-checkbox:checked'))
@@ -160,10 +180,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const total = seleccionados.reduce((acc, item) => acc + item.subtotal, 0);
 
         // Armar mensaje
-        const seleccionadosTexto = seleccionados.map(item =>
+        const productosTexto = productosSeleccionados.map(item =>
             `- ${item.texto} x${item.cantidad} ($${item.precio.toLocaleString()} c/u) = $${item.subtotal.toLocaleString()}`
         ).join('\n');
-        mensajeFinal = `Quisiera pedir esto:\n${seleccionadosTexto}`;
+        mensajeFinal = `Quisiera pedir esto:\n${productosTexto}`;
+        if (aderezosQuesadilla.length > 0) {
+            mensajeFinal += `\n\nAderezos para Quesadilla: ` + aderezosQuesadilla.map(a => a.texto).join(', ');
+        }
         mensajeFinal += `\n\nForma de pago: ${pagos.join(', ')}`;
         mensajeFinal += `\n\nEntrega: ${envio.value}`;
         if (envio.value === 'Para enviar') {
