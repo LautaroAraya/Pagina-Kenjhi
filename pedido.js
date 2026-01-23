@@ -8,14 +8,14 @@ document.addEventListener('DOMContentLoaded', function () {
         checkbox.value = li.textContent.trim();
         checkbox.style.marginRight = '8px';
 
-        // Detectar aderezos de quesadilla
+        // Detectar aderezos de pollo kentucky
         const esAderezoQuesadilla = (
             texto.includes('MAYONESA COMUN') ||
             texto.includes('MAYONESA DE AJO') ||
             texto.includes('KETCHUP COMUN') ||
             texto.includes('KETCHUP PICANTE')
         );
-        // No agregar contador a CHEDDAR, BACON, 2 PIZZETAS y aderezos de quesadilla
+        // No agregar contador a CHEDDAR, BACON, 2 PIZZETAS y aderezos de pollo kentucky
         if (
             !texto.includes('CHEDDAR.') &&
             !texto.includes('BACON.') &&
