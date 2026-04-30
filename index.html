@@ -8,13 +8,15 @@
     <link rel="icon" href="imgs/logo.ico" type="image/x-icon">
 </head>
 <body> 
-    <div id="kenjhi-bienvenida" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.35); z-index:99999; align-items:center; justify-content:center;"> <div style="background:#fff; border-radius:12px; padding:28px 24px; min-width:260px; box-shadow:0 4px 24px rgba(0,0,0,0.18); text-align:center; position:relative;"> <div style="font-weight:bold; color:#d35400; font-size:1.3em; margin-bottom:12px;">KENJHI</div> <div style="color:#222; font-size:1.1em; margin-bottom:18px;"> UNA VEZ SELECCIONADO EL PEDIDO, LA CANTIDAD, METODO DE PAGO, SI ES ENVIO O RETIRO Y EL NOMBRE DE QUIEN RECIBE<br> PRESIONE EL BOTON CON EL LOGO DE WHATSAPP PARA ENVIAR EL PEDIDO. 
+    <div id="kenjhi-bienvenida" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.35); z-index:99999; align-items:center; justify-content:center;"> <div style="background:#fff; border-radius:12px; padding:28px 24px; min-width:260px; box-shadow:0 4px 24px rgba(0,0,0,0.18); text-align:center; position:relative;"> <div style="font-weight:bold; color:#d35400; font-size:1.3em; margin-bottom:12px;">KENJHI</div> <div style="color:#222; font-size:1.1em; margin-bottom:18px;"> UNA VEZ SELECCIONADO EL PEDIDO, LA CANTIDAD, METODO DE PAGO, SI ES ENVIO O RETIRO Y EL NOMBRE DE QUIEN RECIBE<br> PRESIONE EL BOTON CON EL LOGO DE WHATSAPP PARA ENVIAR EL PEDIDO.
 </div> 
 <button id="kenjhi-bienvenida-btn" style="background:#25d366; color:#fff; border:none; border-radius:8px; padding:8px 22px; font-size:1em; cursor:pointer;">Aceptar</button> </div> </div> 
 <div class="logo-container"> <img src="imgs/logo.ico" alt="Logo Kenjhi"> </div> 
 <h1 id="texto1">Bienvenidos a Kenjhi...</h1> 
 <h2 id="texto2">Donde te ofrecemos las mejores comidas con la mejor calidad.</h2> 
 <h2 id="texto2">Aquí podrán ver nuestro menú y mandar directo a nuestro WhatsApp para pedir.</h2>
+<h2>⚠️ SI SUFRÍS ALGUNA ALERGIA ALIMENTARIA (NUECES, MORRÓN/PIMIENTOS, QUESOS, SALSAS U OTROS INGREDIENTES), AVISANOS ANTES DE PEDIR 🙌🏻
+ASÍ PODEMOS RECOMENDARTE EL MEDALLÓN O LA OPCIÓN MÁS ADECUADA PARA VOS Y EVITAR INGREDIENTES QUE PUEDAN AFECTARTE ⚠️</h2>
 
     <div class="menu-list">
         <!-- HAMBURGUESAS -->
@@ -178,7 +180,6 @@
                 <li data-precio="6000"> PORCIÓN MEDIANA DE PAPAS <span class="precio-item">$6.000</span></li>
                 <li data-precio="7500"> PORCIÓN GRANDE DE PAPAS <span class="precio-item">$7.500</span></li>
                 <li data-precio="4500"> CHEDDAR Y BACON. <span class="precio-item">$4.500</span></li>
-                <li > BACON. <span class="precio-item"></span></li>
             </ul>
             <div class="nota">
                 📌 Se le puede agregar queso cheddar y bacon
@@ -297,6 +298,11 @@
     <input type="text" id="nombre-pedido" placeholder="Tu nombre" style="padding:7px; width:90%; border-radius:6px; border:1px solid #ccc; margin-bottom:10px;">
     <label for="horario-pedido" style="margin-top:8px;">Horario de retiro/envío</label>
 <input type="time" id="horario-pedido" min="19:30" max="00:00" style="padding:7px; width:90%; border-radius:6px; border:1px solid #ccc;">
+    <label for="alergia-pedido" style="margin-top:8px; display:block;">Alergia alimentaria (opcional)</label>
+    <input type="text" id="alergia-pedido" placeholder="Escribí si tenés alguna alergia" style="padding:7px; width:90%; border-radius:6px; border:1px solid #ccc;">
+    <label for="observaciones-pedido" style="margin-top:8px; display:block;">Observaciones del pedido (opcional)</label>
+    <textarea id="observaciones-pedido" placeholder="Ej: sin cebolla, bien cocido, sin salsa" rows="3" style="padding:7px; width:90%; border-radius:6px; border:1px solid #ccc; resize:vertical;"></textarea>
+    <button type="button" id="limpiar-pedido" style="margin-top:12px; background:#eee; color:#222; border:none; border-radius:8px; padding:10px 16px; font-size:1em; cursor:pointer; width:90%;">Limpiar pedido</button>
 </div>
 </div>
 

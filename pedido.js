@@ -1,12 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Agrega checkbox y, si corresponde, input de cantidad a cada item de menú y agregados
     document.querySelectorAll('.menu-section ul li').forEach(function (li) {
-        const texto = li.textContent.trim().toUpperCase();
+        li.classList.add('pedido-item');
+        const textoOriginal = li.textContent.trim();
+        const texto = textoOriginal.toUpperCase();
+        li.textContent = '';
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.className = 'pedido-checkbox';
-        checkbox.value = li.textContent.trim();
+        checkbox.value = textoOriginal;
         checkbox.style.marginRight = '8px';
+
+        const textoSpan = document.createElement('span');
+        textoSpan.className = 'pedido-texto';
+        textoSpan.textContent = textoOriginal;
 
         // Detectar aderezos de pollo kentucky
         const esAderezoDePollo = (
@@ -22,20 +29,72 @@ document.addEventListener('DOMContentLoaded', function () {
             !texto.includes('2 PIZZETAS.') &&
             !esAderezoDePollo
         ) {
+            const cantidadWrap = document.createElement('span');
+            cantidadWrap.className = 'cantidad-wrap';
+
+            const btnMenos = document.createElement('button');
+            btnMenos.type = 'button';
+            btnMenos.className = 'cantidad-btn cantidad-btn-menos';
+            btnMenos.textContent = '−';
+
             const cantidad = document.createElement('input');
             cantidad.type = 'number';
             cantidad.className = 'cantidad-input';
             cantidad.min = 0;
             cantidad.value = 0;
-            cantidad.style.width = '45px';
-            cantidad.style.marginLeft = '8px';
-            cantidad.style.borderRadius = '5px';
-            cantidad.style.border = '1px solid #ccc';
-            cantidad.style.padding = '2px 4px';
-            li.prepend(cantidad);
+
+            const btnMas = document.createElement('button');
+            btnMas.type = 'button';
+            btnMas.className = 'cantidad-btn cantidad-btn-mas';
+            btnMas.textContent = '+';
+
+            const setCantidadState = (habilitado) => {
+                cantidad.disabled = !habilitado;
+                btnMenos.disabled = !habilitado;
+                btnMas.disabled = !habilitado;
+            };
+
+            setCantidadState(false);
+
+            checkbox.addEventListener('change', function () {
+                setCantidadState(this.checked);
+                if (!this.checked) {
+                    cantidad.value = 0;
+                } else if (parseInt(cantidad.value) < 1 || isNaN(cantidad.value)) {
+                    cantidad.value = 1;
+                    cantidad.focus();
+                }
+                actualizarTotal();
+            });
+
+            cantidadWrap.appendChild(btnMenos);
+            cantidadWrap.appendChild(cantidad);
+            cantidadWrap.appendChild(btnMas);
+            li.prepend(cantidadWrap);
         }
 
         li.prepend(checkbox);
+        li.appendChild(textoSpan);
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!e.target.classList.contains('cantidad-btn')) return;
+        const li = e.target.closest('li');
+        const cantidadInput = li ? li.querySelector('.cantidad-input') : null;
+        const checkbox = li ? li.querySelector('.pedido-checkbox') : null;
+        if (!cantidadInput) return;
+        if (!checkbox || !checkbox.checked) {
+            return;
+        }
+
+        const valorActual = parseInt(cantidadInput.value) || 0;
+        if (e.target.classList.contains('cantidad-btn-mas')) {
+            cantidadInput.value = valorActual + 1;
+        }
+        if (e.target.classList.contains('cantidad-btn-menos')) {
+            cantidadInput.value = Math.max(0, valorActual - 1);
+        }
+        actualizarTotal();
     });
 
     // Validación de cantidad mínima
@@ -94,6 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const previewContent = document.getElementById('preview-content');
     const btnEnviar = document.getElementById('btn-enviar-wsp');
     const btnCerrar = document.getElementById('btn-cerrar-preview');
+    const btnLimpiar = document.getElementById('limpiar-pedido');
 
     let mensajeFinal = '';
 
@@ -143,6 +203,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const envio = document.querySelector('.envio-radio:checked');
         const direccion = document.getElementById('direccion-envio') ? document.getElementById('direccion-envio').value.trim() : '';
         const nombrePedido = document.getElementById('nombre-pedido') ? document.getElementById('nombre-pedido').value.trim() : '';
+        const alergiaPedido = document.getElementById('alergia-pedido') ? document.getElementById('alergia-pedido').value.trim() : '';
+        const observacionesPedido = document.getElementById('observaciones-pedido') ? document.getElementById('observaciones-pedido').value.trim() : '';
 
         const horarioPedido = document.getElementById('horario-pedido') ? document.getElementById('horario-pedido').value.trim() : '';
 
@@ -197,6 +259,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (horarioPedido) {
             mensajeFinal += `\n\nHorario: ${horarioPedido}`;
         }
+        if (alergiaPedido) {
+            mensajeFinal += `\n\nAlergia alimentaria: ${alergiaPedido}`;
+        }
+        if (observacionesPedido) {
+            mensajeFinal += `\n\nObservaciones: ${observacionesPedido}`;
+        }
         mensajeFinal += `\n\nTOTAL: $${total.toLocaleString()}`;
 
         // Mostrar previsualización
@@ -216,6 +284,38 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('¡Gracias por tu pedido! Te responderemos a la brevedad.');
         }, 500);
     });
+
+    if (btnLimpiar) {
+        btnLimpiar.addEventListener('click', function () {
+            document.querySelectorAll('.pedido-checkbox').forEach(cb => {
+                cb.checked = false;
+            });
+            document.querySelectorAll('.cantidad-input').forEach(input => {
+                input.value = 0;
+            });
+            document.querySelectorAll('.pago-checkbox').forEach(cb => {
+                cb.checked = false;
+            });
+            document.querySelectorAll('.envio-radio').forEach(radio => {
+                radio.checked = false;
+            });
+            const direccionInput = document.getElementById('direccion-envio');
+            const nombreInput = document.getElementById('nombre-pedido');
+            const horarioInput = document.getElementById('horario-pedido');
+            const alergiaInput = document.getElementById('alergia-pedido');
+            const observacionesInput = document.getElementById('observaciones-pedido');
+            if (direccionInput) direccionInput.value = '';
+            if (nombreInput) nombreInput.value = '';
+            if (horarioInput) horarioInput.value = '';
+            if (alergiaInput) alergiaInput.value = '';
+            if (observacionesInput) observacionesInput.value = '';
+            if (direccionContainer) direccionContainer.style.display = 'none';
+            mensajeFinal = '';
+            previewContent.innerText = '';
+            modal.style.display = 'none';
+            actualizarTotal();
+        });
+    }
 
     // Cerrar modal al hacer click fuera del cuadro
     modal.addEventListener('click', function(e) {

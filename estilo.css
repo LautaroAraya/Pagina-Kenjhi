@@ -73,6 +73,59 @@ h1, h2 {
     color: #111;
     font-weight: 500;
 }
+.menu-section li.pedido-item {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    gap: 6px 8px;
+    line-height: 1.2;
+}
+.pedido-checkbox {
+    flex: 0 0 auto;
+}
+.cantidad-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    flex: 0 0 auto;
+}
+.pedido-texto {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+.cantidad-input {
+    width: 42px;
+    padding: 2px 4px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+.cantidad-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+    flex: 0 0 auto;
+}
+.cantidad-btn-menos {
+    background: #d35400;
+}
+.cantidad-btn-mas {
+    background: #25d366;
+}
+.cantidad-btn:disabled,
+.cantidad-input:disabled {
+    opacity: 0.55;
+}
+.cantidad-btn:disabled {
+    cursor: not-allowed;
+}
+.cantidad-input:disabled {
+    cursor: not-allowed;
+}
 .menu-section .nota {
     font-size: 0.95em;
     color: #555;
@@ -90,6 +143,24 @@ h1, h2 {
 @media (max-width: 600px) {
     .menu-list {
         grid-template-columns: 1fr;
+    }
+    .menu-section li.pedido-item {
+        grid-template-columns: auto auto 1fr;
+        gap: 5px 6px;
+        font-size: 0.95em;
+    }
+    .cantidad-wrap {
+        gap: 3px;
+        margin-left: 0;
+    }
+    .cantidad-input {
+        width: 36px;
+        padding: 2px 3px;
+    }
+    .cantidad-btn {
+        width: 26px;
+        height: 26px;
+        border-radius: 5px;
     }
 }
 
