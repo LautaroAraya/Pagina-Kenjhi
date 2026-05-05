@@ -361,3 +361,68 @@ footer a:hover {
     border-color: #ff8800;
     box-shadow: 0 0 0 2px #ffd9b3;
 }
+
+.alert-banner {
+    max-width: 1240px;
+    margin: 16px auto 0;
+    padding: 18px 22px;
+    background: linear-gradient(90deg, #f7ff2b, #fff88a 45%, #fff88a 55%, #f7ff2b);
+    color: #0b0b0b;
+    border-radius: 18px;
+    border: 3px solid rgba(255, 74, 129, 0.95); /* marco rosa/neón */
+    box-shadow:
+        0 6px 30px rgba(255, 200, 45, 0.12),
+        0 0 40px rgba(255, 247, 59, 0.45),
+        0 0 90px rgba(255, 74, 129, 0.25);
+    text-align: center;
+    font-weight: 900;
+    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: visible;
+    transition: box-shadow 0.35s ease;
+}
+
+.alert-banner::before {
+    content: "⚠️";
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+}
+
+@keyframes neon-pulse {
+    0% { box-shadow: 0 0 10px rgba(255,247,59,0.35), 0 0 30px rgba(255,74,129,0.18); }
+    50% { box-shadow: 0 0 24px rgba(255,247,59,0.55), 0 0 64px rgba(255,74,129,0.28); }
+    100% { box-shadow: 0 0 10px rgba(255,247,59,0.35), 0 0 30px rgba(255,74,129,0.18); }
+}
+
+.alert-banner.animate-neon {
+    animation: neon-pulse 2.2s ease-in-out infinite;
+}
+
+.alert-banner strong {
+    color: #0b0b0b;
+}
+
+/* Borde parpadeante (blink) */
+@keyframes blink-border {
+    0% {
+        border-color: rgba(255, 74, 129, 0.95);
+        box-shadow: 0 6px 30px rgba(255, 200, 45, 0.12), 0 0 40px rgba(255,247,59,0.45), 0 0 90px rgba(255,74,129,0.25);
+    }
+    50% {
+        border-color: rgba(255, 255, 255, 0.6);
+        box-shadow: 0 6px 10px rgba(255, 200, 45, 0.06), 0 0 8px rgba(255,247,59,0.18), 0 0 18px rgba(255,74,129,0.08);
+    }
+    100% {
+        border-color: rgba(255, 74, 129, 0.95);
+        box-shadow: 0 6px 30px rgba(255, 200, 45, 0.12), 0 0 40px rgba(255,247,59,0.45), 0 0 90px rgba(255,74,129,0.25);
+    }
+}
+
+.alert-banner.animate-blink {
+    animation: blink-border 1.6s ease-in-out infinite;
+}
