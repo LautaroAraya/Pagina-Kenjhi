@@ -269,13 +269,32 @@
     <div class="opcion-col">
         <h3>Forma de pago</h3>
         <label>
-            <input type="checkbox" class="pago-checkbox" value="Efectivo">
+            <input type="radio" name="pago" class="pago-radio" value="Efectivo">
             Efectivo
         </label><br>
         <label>
-            <input type="checkbox" class="pago-checkbox" value="Transferencia">
+            <input type="radio" name="pago" class="pago-radio" value="Transferencia">
             Transferencia
+        </label><br>
+        <label>
+            <input type="radio" name="pago" class="pago-radio" value="Combinado">
+            Combinado
         </label>
+        <div id="pago-cbu-container" style="display:none; margin-top:12px; text-align:left;">
+            <label for="cbu-kenjhi" style="display:block; margin-bottom:6px; font-size:0.98em;">CBU para transferir</label>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                <input type="text" id="cbu-kenjhi" value="4530000800016612257565" readonly style="padding:7px; flex:1 1 210px; border-radius:6px; border:1px solid #ccc; background:#f7f7f7;">
+                <button type="button" id="btn-copiar-cbu" style="background:#d35400; color:#fff; border:none; border-radius:8px; padding:8px 14px; cursor:pointer;">Copiar CBU</button>
+            </div>
+            <small style="display:block; margin-top:6px; color:#555;">Usá este CBU cuando elijas transferencia o pago combinado.</small>
+        </div>
+        <div id="pago-combinado-container" style="display:none; margin-top:12px; text-align:left;">
+            <label for="monto-transferencia" style="display:block; margin-bottom:6px; font-size:0.98em;">Cuánto transfiere</label>
+            <input type="number" id="monto-transferencia" min="0" step="1" placeholder="Monto a transferir" style="padding:7px; width:100%; border-radius:6px; border:1px solid #ccc; margin-bottom:10px;">
+            <label for="monto-efectivo" style="display:block; margin-bottom:6px; font-size:0.98em;">Cuánto paga en efectivo</label>
+            <input type="number" id="monto-efectivo" min="0" step="1" placeholder="Monto en efectivo" style="padding:7px; width:100%; border-radius:6px; border:1px solid #ccc;">
+            <small style="display:block; margin-top:6px; color:#555;">Se completa automáticamente con el total del pedido.</small>
+        </div>
     </div>
     <!-- Cómo recibir -->
     <div class="opcion-col">

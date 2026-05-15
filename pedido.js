@@ -147,6 +147,94 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    const pagoRadios = document.querySelectorAll('.pago-radio');
+    const pagoCbuContainer = document.getElementById('pago-cbu-container');
+    const pagoCombinadoContainer = document.getElementById('pago-combinado-container');
+    const montoTransferenciaInput = document.getElementById('monto-transferencia');
+    const montoEfectivoInput = document.getElementById('monto-efectivo');
+    const cbuInput = document.getElementById('cbu-kenjhi');
+    const btnCopiarCbu = document.getElementById('btn-copiar-cbu');
+
+    function calcularTotalPedidoSeleccionado() {
+        let total = 0;
+        document.querySelectorAll('.pedido-checkbox:checked').forEach(cb => {
+            const li = cb.parentElement;
+            const precio = parseFloat(li.getAttribute('data-precio')) || 0;
+            const cantidadInput = li.querySelector('.cantidad-input');
+            let cantidad = 1;
+            if (cantidadInput) cantidad = parseInt(cantidadInput.value) || 0;
+            total += precio * cantidad;
+        });
+        return total;
+    }
+
+    function actualizarPagoCombinado(origen) {
+        const pagoSeleccionado = document.querySelector('.pago-radio:checked');
+        if (!pagoSeleccionado || pagoSeleccionado.value !== 'Combinado') return;
+
+        const totalPedido = calcularTotalPedidoSeleccionado();
+        const valorTransferencia = montoTransferenciaInput ? parseFloat(montoTransferenciaInput.value) || 0 : 0;
+        const valorEfectivo = montoEfectivoInput ? parseFloat(montoEfectivoInput.value) || 0 : 0;
+
+        if (origen === 'transferencia' && montoTransferenciaInput && montoEfectivoInput) {
+            const restante = Math.max(totalPedido - valorTransferencia, 0);
+            montoEfectivoInput.value = restante;
+        }
+
+        if (origen === 'efectivo' && montoTransferenciaInput && montoEfectivoInput) {
+            const restante = Math.max(totalPedido - valorEfectivo, 0);
+            montoTransferenciaInput.value = restante;
+        }
+    }
+
+    function actualizarCamposPago() {
+        const pagoSeleccionado = document.querySelector('.pago-radio:checked');
+        const valorPago = pagoSeleccionado ? pagoSeleccionado.value : '';
+
+        if (pagoCbuContainer) {
+            pagoCbuContainer.style.display = (valorPago === 'Transferencia' || valorPago === 'Combinado') ? 'block' : 'none';
+        }
+        if (pagoCombinadoContainer) {
+            pagoCombinadoContainer.style.display = valorPago === 'Combinado' ? 'block' : 'none';
+        }
+    }
+
+    pagoRadios.forEach(radio => {
+        radio.addEventListener('change', actualizarCamposPago);
+    });
+
+    if (montoTransferenciaInput) {
+        montoTransferenciaInput.addEventListener('input', function () {
+            actualizarPagoCombinado('transferencia');
+        });
+    }
+
+    if (montoEfectivoInput) {
+        montoEfectivoInput.addEventListener('input', function () {
+            actualizarPagoCombinado('efectivo');
+        });
+    }
+
+    actualizarCamposPago();
+
+    if (btnCopiarCbu && cbuInput) {
+        btnCopiarCbu.addEventListener('click', async function () {
+            const textoCbu = cbuInput.value.trim();
+            try {
+                await navigator.clipboard.writeText(textoCbu);
+                const textoOriginal = btnCopiarCbu.textContent;
+                btnCopiarCbu.textContent = 'Copiado';
+                setTimeout(() => {
+                    btnCopiarCbu.textContent = textoOriginal;
+                }, 1500);
+            } catch (error) {
+                cbuInput.focus();
+                cbuInput.select();
+                document.execCommand('copy');
+            }
+        });
+    }
+
     // Modal de previsualización
     const wspBtn = document.getElementById('wsp-float');
     const modal = document.getElementById('modal-preview');
@@ -196,8 +284,10 @@ document.addEventListener('DOMContentLoaded', function () {
         // ...la validación ya se realiza con productosSeleccionados más arriba...
 
         // Método de pago seleccionado
-        const pagos = Array.from(document.querySelectorAll('.pago-checkbox:checked'))
-            .map(cb => cb.value);
+        const pagoSeleccionado = document.querySelector('.pago-radio:checked');
+        const metodoPago = pagoSeleccionado ? pagoSeleccionado.value : '';
+        const montoTransferencia = montoTransferenciaInput ? parseFloat(montoTransferenciaInput.value) || 0 : 0;
+        const montoEfectivo = montoEfectivoInput ? parseFloat(montoEfectivoInput.value) || 0 : 0;
 
         // Forma de envío seleccionada
         const envio = document.querySelector('.envio-radio:checked');
@@ -214,8 +304,8 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Seleccioná al menos un producto para pedir por WhatsApp.');
             return;
         }
-        if (pagos.length === 0) {
-            alert('Seleccioná al menos una forma de pago.');
+        if (!metodoPago) {
+            alert('Seleccioná una forma de pago.');
             return;
         }
         if (!envio) {
@@ -237,6 +327,10 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('horario-pedido').focus();
             return;
         }
+        if (metodoPago === 'Combinado' && (montoTransferencia <= 0 || montoEfectivo <= 0)) {
+            alert('Completá cuánto transfiere y cuánto paga en efectivo.');
+            return;
+        }
 
         // Calcular total
         const total = seleccionados.reduce((acc, item) => acc + item.subtotal, 0);
@@ -249,7 +343,17 @@ document.addEventListener('DOMContentLoaded', function () {
         if (aderezosPollo.length > 0) {
             mensajeFinal += `\n\nAderezos para Pollo Kentucky: ` + aderezosPollo.map(a => a.texto).join(', ');
         }
-        mensajeFinal += `\n\nForma de pago: ${pagos.join(', ')}`;
+        mensajeFinal += `\n\nForma de pago: ${metodoPago}`;
+        if (metodoPago === 'Transferencia') {
+            mensajeFinal += `\nMonto a transferir: $${total.toLocaleString()}`;
+        }
+        if (metodoPago === 'Combinado') {
+            const totalCombinado = montoTransferencia + montoEfectivo;
+            mensajeFinal += `\nPago combinado:`;
+            mensajeFinal += `\nMonto a transferir: $${montoTransferencia.toLocaleString()}`;
+            mensajeFinal += `\nMonto en efectivo: $${montoEfectivo.toLocaleString()}`;
+            mensajeFinal += `\nTotal pago combinado: $${totalCombinado.toLocaleString()}`;
+        }
         mensajeFinal += `\n\nEntrega: ${envio.value}`;
         if (envio.value === 'Para enviar') {
             mensajeFinal += `\nDirección: ${direccion}`;
@@ -293,9 +397,12 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.cantidad-input').forEach(input => {
                 input.value = 0;
             });
-            document.querySelectorAll('.pago-checkbox').forEach(cb => {
+            document.querySelectorAll('.pago-radio').forEach(cb => {
                 cb.checked = false;
             });
+            if (montoTransferenciaInput) montoTransferenciaInput.value = '';
+            if (montoEfectivoInput) montoEfectivoInput.value = '';
+            actualizarCamposPago();
             document.querySelectorAll('.envio-radio').forEach(radio => {
                 radio.checked = false;
             });

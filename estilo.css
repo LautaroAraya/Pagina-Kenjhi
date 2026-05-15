@@ -243,6 +243,30 @@ footer p {
     transform: scale(1.2);
     vertical-align: middle;
 }
+.opcion-col input[type="radio"] {
+    accent-color: #25d366;
+    margin-right: 7px;
+    transform: scale(1.15);
+    vertical-align: middle;
+}
+#pago-cbu-container,
+#pago-combinado-container {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(211, 84, 0, 0.18);
+    border-radius: 10px;
+    padding: 12px;
+}
+#pago-cbu-container input,
+#pago-combinado-container input {
+    box-sizing: border-box;
+}
+#btn-copiar-cbu {
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+#btn-copiar-cbu:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
 /* Estilo para la sección de envío */
 .opciones-envio {
     background: #f5cfcf;
@@ -280,6 +304,7 @@ footer p {
 /* Animación al seleccionar productos */
 .pedido-checkbox:checked,
 .pago-checkbox:checked,
+.pago-radio:checked,
 .envio-radio:checked {
     animation: pulse 0.3s;
 }
